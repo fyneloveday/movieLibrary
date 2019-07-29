@@ -31,9 +31,10 @@ namespace movieLibrary.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public Movie Get(int id)
         {
-            return "value";
+            return movie.Where(m => m.Id == id).FirstOrDefault();
+            //return "value";
         }
 
         // POST api/<controller>
