@@ -12,7 +12,7 @@ namespace movieLibrary.Controllers
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "movie1", "movie2", "movie3", "movie4", "movie5" };
         }
 
         // GET api/<controller>/5
