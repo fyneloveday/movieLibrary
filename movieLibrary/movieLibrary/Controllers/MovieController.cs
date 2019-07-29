@@ -14,11 +14,11 @@ namespace movieLibrary.Controllers
 
         public MovieController()
         {
-            movie.Add (new Movie { Title = "The Departed", Genre = "Drama", Director = "Martin Scorsese" });
-            movie.Add (new Movie { Title = "The Dark Knight", Genre = "Drama", Director = "Christopher Nolan" });
-            movie.Add (new Movie { Title = "Inception", Genre = "Drama", Director = "Christopher Nolan" });
-            movie.Add (new Movie { Title = "Pineapple Express", Genre = "Comedy", Director = "David Gordon Green" });
-            movie.Add (new Movie { Title = "Die Hard", Genre = "Action", Director = "John McTiernan" });
+            movie.Add (new Movie { Id = 1, Title = "The Departed", Genre = "Drama", Director = "Martin Scorsese" });
+            movie.Add (new Movie { Id = 2, Title = "The Dark Knight", Genre = "Drama", Director = "Christopher Nolan" });
+            movie.Add (new Movie { Id = 3, Title = "Inception", Genre = "Drama", Director = "Christopher Nolan" });
+            movie.Add (new Movie { Id = 4, Title = "Pineapple Express", Genre = "Comedy", Director = "David Gordon Green" });
+            movie.Add (new Movie { Id = 5, Title = "Die Hard", Genre = "Action", Director = "John McTiernan" });
         }
 
 

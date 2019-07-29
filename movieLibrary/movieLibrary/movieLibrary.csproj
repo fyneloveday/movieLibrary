@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201907270009576_newModelAndDb.Designer.cs">
       <DependentUpon>201907270009576_newModelAndDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907291809450_removedPrimaryKey.cs" />
+    <Compile Include="Migrations\201907291809450_removedPrimaryKey.Designer.cs">
+      <DependentUpon>201907291809450_removedPrimaryKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -322,6 +326,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201907270009576_newModelAndDb.resx">
       <DependentUpon>201907270009576_newModelAndDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907291809450_removedPrimaryKey.resx">
+      <DependentUpon>201907291809450_removedPrimaryKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

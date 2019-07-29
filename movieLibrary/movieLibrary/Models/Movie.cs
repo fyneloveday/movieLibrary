@@ -8,7 +8,7 @@ namespace movieLibrary.Models
 {
     public class Movie
     {
-        [Key]
+        //[Key]
         public int Id { get; set; }
         [Display(Name = "Title")]
         public string Title { get; set; }
