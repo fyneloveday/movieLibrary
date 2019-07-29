@@ -38,8 +38,9 @@ namespace movieLibrary.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public void Post(Movie value)
         {
+            movie.Add(value);            
         }
 
         // PUT api/<controller>/5
