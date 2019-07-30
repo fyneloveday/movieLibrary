@@ -1,30 +1,33 @@
-﻿using movieLibrary.CorFile;
-using movieLibrary.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
+using System.Web.Http.Description;
+using movieLibrary.CorFile;
+using movieLibrary.Models;
 
 namespace movieLibrary.Controllers
 {
     public class MovieController : ApiController
     {
 
-        //[AllowCrossSite]
-        //[RoutePrefix("api/Movies")]
-        //public class MoviesController : ApiController
-        //{
-        //    private ApplicationDbContext db = new ApplicationDbContext();
+        [AllowCrossSite]
+        [RoutePrefix("api/Movies")]
+        public class MoviesController : ApiController
+        {
+            private ApplicationDbContext db = new ApplicationDbContext();
 
-        //    // GET: api/Movies
-        //    [Route("")]
-        //    public IQueryable<Movie> GetMovies()
-        //    {
-        //        return db.movie;
-        //    }
+            // GET: api/Movies
+            [Route("")]
+            public IQueryable<Movie> GetMovies()
+            {
+                return db.movie;
+            }
 
 
             //private List<Movie> movie = new List<Movie>();
@@ -39,35 +42,56 @@ namespace movieLibrary.Controllers
             //}
 
 
-            // GET api/<controller>
-            public IEnumerable<string> Get()
-            //public List<Movie> Get()
-        {
-            //return movie;
-            return new string[] { "movie1", "movie2", "movie3", "movie4", "movie5" };
-        }
+            //// GET api/<controller>
+            //public IEnumerable<string> Get()
+            ////public List<Movie> Get()
+            //{
+            //    //return movie;
+            //    return new string[] { "movie1", "movie2", "movie3", "movie4", "movie5" };
+            //}
 
-        // GET api/<controller>/5
-        //public Movie Get(int id)
-        //{
-        //    return movie.Where(m => m.Id == id).FirstOrDefault();
-        //    //return "value";
-        //}
 
-        // POST api/<controller>      
-        //public void Post(Movie value)
-        //{
-        //    movie.Add(value);                        
-        //}
+            // GET: api/Movies/5
+            [Route("{id:int}")]
+            [HttpGet]
+            [ResponseType(typeof(Movie))]
+            public IHttpActionResult GetMovie(int id)
+            {
+                Movie movie = db.movie.Where(m => m.Id == id).SingleOrDefault();
+                if (movie == null)
+                {
+                    return NotFound();
+                }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+                return Ok(movie);
+            }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
+            // POST: api/Movies
+            [HttpPost()]
+            [Route("")]
+            [ResponseType(typeof(Movie))]
+            public IHttpActionResult PostMovie(Movie movie)
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                db.movie.Add(movie);
+                db.SaveChanges();
+
+                return CreatedAtRoute("DefaultApi", new { id = movie.Id }, movie);
+            }
+
+
+            public void Put(int id, [FromBody]string value)
+            {
+            }
+
+            // DELETE api/<controller>/5
+            public void Delete(int id)
+            {
+            }
         }
     }
 }
