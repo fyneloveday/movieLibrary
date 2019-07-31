@@ -66,6 +66,15 @@ namespace movieLibrary.Controllers
                 return Ok(movie);
             }
 
+
+            // GET: api/Movies/Title
+            [Route("Title/{title}")]
+            public IQueryable<Movie> GetMoviesByTitle(string title)
+            {
+                return db.movie.Where(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+            }
+
+
             // POST: api/Movies
             [HttpPost()]
             [Route("")]
@@ -107,9 +116,22 @@ namespace movieLibrary.Controllers
                 return Ok();
             }
 
-            // DELETE api/<controller>/5
-            public void Delete(int id)
+            // DELETE: api/Movies/5
+            [HttpDelete()]
+            [Route("{id:int}")]
+            [ResponseType(typeof(Movie))]
+            public IHttpActionResult DeleteMovie(int id)
             {
+                Movie movie = db.movie.Find(id);
+                if (movie == null)
+                {
+                    return NotFound();
+                }
+
+                db.movie.Remove(movie);
+                db.SaveChanges();
+
+                return Ok(movie);
             }
         }
     }
