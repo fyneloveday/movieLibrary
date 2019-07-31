@@ -16,5 +16,6 @@ namespace movieLibrary.Models
         public string Genre { get; set; }
         [Display(Name = "Director")]
         public string Director { get; set; }
+        public virtual ICollection<File> Files { get; set; }
     }
 }

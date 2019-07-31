@@ -7,13 +7,13 @@ namespace movieLibrary.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class FileModel : IMigrationMetadata
+    public sealed partial class MovieModelUpdate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FileModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MovieModelUpdate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201907310639066_FileModel"; }
+            get { return "201907311640150_MovieModelUpdate"; }
         }
         
         string IMigrationMetadata.Source

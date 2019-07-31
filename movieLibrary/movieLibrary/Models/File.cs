@@ -15,8 +15,8 @@ namespace movieLibrary.Models
         [StringLength(100)]
         public string ContentType { get; set; }
         public byte[] Content { get; set; }
-        //public FileType FileType { get; set; }
-        //public int MemberId { get; set; }
-        //public virtual MemberModel Member { get; set; }
+        public FileType FileType { get; set; }
+        public int MovieId { get; set; }
+        public virtual Movie Movie { get; set; }
     }
 }

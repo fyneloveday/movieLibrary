@@ -234,14 +234,15 @@
     <Compile Include="Migrations\201907302144149_DbUpdate.Designer.cs">
       <DependentUpon>201907302144149_DbUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907310639066_FileModel.cs" />
-    <Compile Include="Migrations\201907310639066_FileModel.Designer.cs">
-      <DependentUpon>201907310639066_FileModel.cs</DependentUpon>
+    <Compile Include="Migrations\201907311640150_MovieModelUpdate.cs" />
+    <Compile Include="Migrations\201907311640150_MovieModelUpdate.Designer.cs">
+      <DependentUpon>201907311640150_MovieModelUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\File.cs" />
+    <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -351,8 +352,8 @@
     <EmbeddedResource Include="Migrations\201907302144149_DbUpdate.resx">
       <DependentUpon>201907302144149_DbUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907310639066_FileModel.resx">
-      <DependentUpon>201907310639066_FileModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907311640150_MovieModelUpdate.resx">
+      <DependentUpon>201907311640150_MovieModelUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
