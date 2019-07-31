@@ -23,6 +23,7 @@ namespace movieLibrary.Models
     {
 
         public DbSet<Movie> movie { get; set; }
+        public DbSet<File> Files { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

@@ -100,7 +100,20 @@ namespace movieLibrary.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var avatar = new Models.File
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Avatar,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    movie.Files = new List<Models.File> { avatar };
+                }
                 db.movie.Add(movie);
                 db.SaveChanges();
 
@@ -112,7 +125,7 @@ namespace movieLibrary.Controllers
             [HttpPut()]
             [Route("{id:int}")]
             [ResponseType(typeof(void))]
-            public IHttpActionResult Put(int id, Movie movie)
+            public IHttpActionResult Put(int id, Movie movie, HttpPostedFileBase upload)
             {
                 var existingMovie = db.movie.Find(id);
                 if (movie.Title != null)
@@ -127,6 +140,29 @@ namespace movieLibrary.Controllers
                 {
                     existingMovie.Director = movie.Director;
                 }
+
+                {
+                    if (upload != null && upload.ContentLength > 0)
+                    {
+                        if (existingMovie.Files.Any(f => f.FileType == FileType.Avatar))
+                        {
+                            db.Files.Remove(existingMovie.Files.First(f => f.FileType == FileType.Avatar));
+                        }
+                        var avatar = new Models.File
+                        {
+                            FileName = System.IO.Path.GetFileName(upload.FileName),
+                            FileType = FileType.Avatar,
+                            ContentType = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            avatar.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        existingMovie.Files = new List<Models.File> { avatar };
+                    }
+                }
+
+
                 db.SaveChanges();
                 return Ok();
             }
