@@ -74,6 +74,20 @@ namespace movieLibrary.Controllers
                 return db.movie.Where(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
             }
 
+            // GET: api/Movies/Genre
+            [Route("Genre/{genre}")]
+            public IQueryable<Movie> GetMoviesByGenre(string genre)
+            {
+                return db.movie.Where(b => b.Genre.Equals(genre, StringComparison.OrdinalIgnoreCase));
+            }
+
+            // GET: api/Movies/Director
+            [Route("Director/{name}")]
+            public IQueryable<Movie> GetMoviesByDirectorName(string name)
+            {
+                return db.movie.Where(b => b.Director.Equals(name, StringComparison.OrdinalIgnoreCase));
+            }
+
 
             // POST: api/Movies
             [HttpPost()]
