@@ -84,8 +84,27 @@ namespace movieLibrary.Controllers
             }
 
 
-            public void Put(int id, [FromBody]string value)
+            // PUT: api/Movies/5
+            [HttpPut()]
+            [Route("{id:int}")]
+            [ResponseType(typeof(void))]
+            public IHttpActionResult Put(int id, Movie movie)
             {
+                var existingMovie = db.movie.Find(id);
+                if (movie.Title != null)
+                {
+                    existingMovie.Title = movie.Title;
+                }
+                if (movie.Genre != null)
+                {
+                    existingMovie.Genre = movie.Genre;
+                }
+                if (movie.Director != null)
+                {
+                    existingMovie.Director = movie.Director;
+                }
+                db.SaveChanges();
+                return Ok();
             }
 
             // DELETE api/<controller>/5
