@@ -20,13 +20,7 @@
     <input type="hidden" id="MovieId" value="0" />
     <div class="container">
 
-
-        <div class="form-group">
-            @Html.Label("Avatar", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" id="Avatar" name="upload" />
-            </div>
-        </div>
+        
         <div class="row">
             <div class="col-sm-4">
                 <div class="panel panel-primary">
@@ -34,6 +28,12 @@
                         Movie Information
                     </div>
                     <div class="panel-body">
+                        <div class="form-group">
+                            @Html.Label("Avatar", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" id="Avatar" name="upload" />
+                            </div>
+                        </div>
                         <div class="form-control-sm">
                             <label for="Title">
                                 Title
@@ -131,7 +131,7 @@
             Id: 0,
             Title: "",
             Genre: "",
-            Director: ""
+            Director: ""         
         }
         function updateClick() {
             Movie = new Object();
