@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace movieLibrary.Models
         public string Genre { get; set; }
         [Display(Name = "Director")]
         public string Director { get; set; }
+        [JsonIgnore]
         public virtual ICollection<File> Files { get; set; }
     }
 }

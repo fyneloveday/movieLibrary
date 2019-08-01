@@ -37,7 +37,7 @@ namespace movieLibrary.Controllers
             [ResponseType(typeof(Movie))]
             public IHttpActionResult GetMovie(int id)
             {
-                Movie movie = db.movie.Include(m => m.Id == id).SingleOrDefault();
+                Movie movie = db.movie.Where(m => m.Id == id).SingleOrDefault();
                 if (movie == null)
                 {
                     return NotFound();
@@ -104,44 +104,44 @@ namespace movieLibrary.Controllers
             [HttpPut()]
             [Route("{id:int}")]
             [ResponseType(typeof(void))]
-            public IHttpActionResult Put(int id, Movie movie, HttpPostedFileBase upload)
+            public IHttpActionResult Put(Movie movie, HttpPostedFileBase upload)
             {
-                var existingMovie = db.movie.Find(id);
+                //var existingMovie = db.movie.Find(id);
+                db.Entry(movie).State = EntityState.Modified;
+
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    if (movie.Files.Any(f => f.FileType == FileType.Avatar))
+                    {
+                        db.Files.Remove(movie.Files.First(f => f.FileType == FileType.Avatar));
+                    }
+                    var avatar = new Models.File
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Avatar,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    movie.Files = new List<Models.File> { avatar };
+                }
+
+
                 if (movie.Title != null)
                 {
-                    existingMovie.Title = movie.Title;
+                    movie.Title = movie.Title;
                 }
                 if (movie.Genre != null)
                 {
-                    existingMovie.Genre = movie.Genre;
+                    movie.Genre = movie.Genre;
                 }
                 if (movie.Director != null)
                 {
-                    existingMovie.Director = movie.Director;
+                    movie.Director = movie.Director;
                 }
-
-                {
-                    if (upload != null && upload.ContentLength > 0)
-                    {
-                        if (existingMovie.Files.Any(f => f.FileType == FileType.Avatar))
-                        {
-                            db.Files.Remove(existingMovie.Files.First(f => f.FileType == FileType.Avatar));
-                        }
-                        var avatar = new Models.File
-                        {
-                            FileName = System.IO.Path.GetFileName(upload.FileName),
-                            FileType = FileType.Avatar,
-                            ContentType = upload.ContentType
-                        };
-                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                        {
-                            avatar.Content = reader.ReadBytes(upload.ContentLength);
-                        }
-                        existingMovie.Files = new List<Models.File> { avatar };
-                    }
-                }
-
-
+                                   
                 db.SaveChanges();
                 return Ok();
             }

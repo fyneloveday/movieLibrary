@@ -243,6 +243,14 @@
     <Compile Include="Migrations\201907311703106_IdentityModelFile.Designer.cs">
       <DependentUpon>201907311703106_IdentityModelFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908011745057_FilesDoubleCheck.cs" />
+    <Compile Include="Migrations\201908011745057_FilesDoubleCheck.Designer.cs">
+      <DependentUpon>201908011745057_FilesDoubleCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908012001310_VirtualJsonIgnore.cs" />
+    <Compile Include="Migrations\201908012001310_VirtualJsonIgnore.Designer.cs">
+      <DependentUpon>201908012001310_VirtualJsonIgnore.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -363,6 +371,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907311703106_IdentityModelFile.resx">
       <DependentUpon>201907311703106_IdentityModelFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908011745057_FilesDoubleCheck.resx">
+      <DependentUpon>201908011745057_FilesDoubleCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908012001310_VirtualJsonIgnore.resx">
+      <DependentUpon>201908012001310_VirtualJsonIgnore.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
